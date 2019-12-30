@@ -1,21 +1,21 @@
 import pandas as pd
+# import numpy as np
 # import os
 import matplotlib.pyplot as plt
 from matplotlib.figure import figaspect
-# from statistics import median
+from statistics import median
 # from sklearn.linear_model import LinearRegression
 
-df_range = pd.read_excel(r'Copy of AP Data Collection_Analysis.xlsx')
-
 df_2019 = pd.read_excel(
-    r'Copy of AP Data Collection Sheet.xlsx', sheet_name='Main Sheet')
+    r'EPC Copy of AP Data Collection Sheet.xlsx', sheet_name='Data FY19 till Nov30th')
 df_2018 = pd.read_excel(
-    r'Copy of AP Data Collection Sheet.xlsx', sheet_name='Data FY18-19')
+    r'EPC Copy of AP Data Collection Sheet.xlsx', sheet_name='Data FY18-19')
 df_2017 = pd.read_excel(
-    r'Copy of AP Data Collection Sheet.xlsx', sheet_name='Data FY17-18')
+    r'EPC Copy of AP Data Collection Sheet.xlsx', sheet_name='Data FY17-18')
 df_2016 = pd.read_excel(
-    r'Copy of AP Data Collection Sheet.xlsx', sheet_name='Data FY16-17')
+    r'EPC Copy of AP Data Collection Sheet.xlsx', sheet_name='Data FY16-17')
 df_2011 = pd.read_excel(r'Copy of AP ULB Data for Dashboard.xlsx')
+df_range = df_2018
 # prefixes = list(df['Ulb Code'])
 # suffixes = list(df['File Storeid'])
 # for i in range(0, len(suffixes)):
@@ -42,10 +42,182 @@ df_2016 = df_2016.fillna(0)
 
 # print(df.columns)
 
-df_2019corp = df_2019[df_2019['ULB Type'] == 'Corp']
-df_2018corp = df_2018[df_2018['ULB Type'] == 'Corp']
-df_2017corp = df_2017[df_2017['ULB Type'] == 'Corp']
-df_2016corp = df_2016[df_2016['ULB Type'] == 'Corp']
+ideal_under50k = [
+    'Kalyanadurgam',
+    'Gollaprolu',
+    'Rajam',
+    'Kanigiri',
+    'Kovvur'
+]
+
+ideal_50k1L = [
+    'Vinukonda',
+    'Yemmiganur',
+    'Tiruvuru',
+    'Rajampet',
+    'Parvathipuram'
+]
+
+ideal_1L2L = [
+    'Tadipatri',
+    'Chilakaluripet',
+    'Bhimavaram',
+    'Dharmavaram',
+    'Tadepalligudem'
+]
+
+ideal_2L3L = [
+    'Nandyal',
+    'Ongole',
+    'Tirupati',
+    'Vijayanagaram',
+    'Proddatur'
+]
+
+ideal_3L5L = [
+    'Kurnool',
+    'Kadapa',
+    'Rajahmundry',
+    'Nellore',
+    'Kakinada'
+]
+
+# df_2018under50k = df_2018[df_2018['ULB Name'].isin(ideal_under50k)]
+# df_201850k1L = df_2018[df_2018['ULB Name'].isin(ideal_50k1L)]
+# df_20181L2L = df_2018[df_2018['ULB Name'].isin(ideal_1L2L)]
+# df_20182L3L = df_2018[df_2018['ULB Name'].isin(ideal_2L3L)]
+# df_20183L5L = df_2018[df_2018['ULB Name'].isin(ideal_3L5L)]
+#
+# print('Model ULB under 50k')
+# print(
+#     'Average population: ',
+#     median(df_2018under50k['ULB Population']))
+# print('Employees per capita: ', median(df_2018under50k['Current Total (Mar 19)']*1000/df_2018under50k['ULB Population']))
+# print(
+#     'Active Properties per capita: ',
+#     median(df_2018under50k['# of Active Properties (Mar 19)']*1000/df_2018under50k['ULB Population']))
+# print(
+#     'Active Properties per Revenue employee: ',
+#     median(df_2018under50k['# of Active Properties (Mar 19)']/df_2018under50k['Revenue']))
+# print(
+#     'PT Collection Rate: ',
+#     median(df_2018under50k['Cumulative Collections (Including Arrears/ penalty) FY19']/df_2018under50k['Demand (FY 19) - Including Arrears/ Penaltie etc.']))
+# print(
+#     'Active Water Connections per 1000 Properties: ',
+#     median(df_2018under50k['# of Active Connection (as on Mar 19)']*1000/df_2018under50k['# of Active Properties (Mar 19)']))
+# print(
+#     'Percentage NRW: ',
+#     median(df_2018under50k['# of NRW (FY19)\n[2018-19 Unpaid Connections as on Mar18]']/df_2018under50k['# of Active Connection (as on Mar 19)']))
+# print('Grievances per capita: ', median(df_2018under50k['Total Grievances']*1000/df_2018under50k['ULB Population']))
+# print('PGR resolved within SLA:  ', median(df_2018under50k['% within SLA']))
+# print('Municipal Services per capita: ', median(df_2018under50k['Total # of Citizen Services (Logged in Fy19)']*1000/df_2018under50k['ULB Population']))
+# print('MS resolved within SLA: ', median(df_2018under50k['% delivered within SLA']))
+# print(' ')
+# print('Model ULB 50k to 1L')
+# print(
+#     'Average population: ',
+#     median(df_201850k1L['ULB Population']))
+# print('Employees per capita: ', median(df_201850k1L['Current Total (Mar 19)']*1000/df_201850k1L['ULB Population']))
+# print(
+#     'Active Properties per capita: ',
+#     median(df_201850k1L['# of Active Properties (Mar 19)']*1000/df_201850k1L['ULB Population']))
+# print(
+#     'Active Properties per Revenue employee: ',
+#     median(df_201850k1L['# of Active Properties (Mar 19)']/df_201850k1L['Revenue']))
+# print(
+#     'PT Collection Rate: ',
+#     median(df_201850k1L['Cumulative Collections (Including Arrears/ penalty) FY19']/df_201850k1L['Demand (FY 19) - Including Arrears/ Penaltie etc.']))
+# print(
+#     'Active Water Connections per 1000 Properties: ',
+#     median(df_201850k1L['# of Active Connection (as on Mar 19)']*1000/df_201850k1L['# of Active Properties (Mar 19)']))
+# print(
+#     'Percentage NRW: ',
+#     median(df_201850k1L['# of NRW (FY19)\n[2018-19 Unpaid Connections as on Mar18]']/df_201850k1L['# of Active Connection (as on Mar 19)']))
+# print('Grievances per capita: ', median(df_201850k1L['Total Grievances']*1000/df_201850k1L['ULB Population']))
+# print('PGR resolved within SLA:  ', median(df_201850k1L['% within SLA']))
+# print('Municipal Services per capita: ', median(df_201850k1L['Total # of Citizen Services (Logged in Fy19)']*1000/df_201850k1L['ULB Population']))
+# print('MS resolved within SLA: ', median(df_201850k1L['% delivered within SLA']))
+# print(' ')
+# print('Model ULB 1L to 2L')
+# print(
+#     'Average population: ',
+#     median(df_20181L2L['ULB Population']))
+# print('Employees per capita: ', median(df_20181L2L['Current Total (Mar 19)']*1000/df_20181L2L['ULB Population']))
+# print(
+#     'Active Properties per capita: ',
+#     median(df_20181L2L['# of Active Properties (Mar 19)']*1000/df_20181L2L['ULB Population']))
+# print(
+#     'Active Properties per Revenue employee: ',
+#     median(df_20181L2L['# of Active Properties (Mar 19)']/df_20181L2L['Revenue']))
+# print(
+#     'PT Collection Rate: ',
+#     median(df_20181L2L['Cumulative Collections (Including Arrears/ penalty) FY19']/df_20181L2L['Demand (FY 19) - Including Arrears/ Penaltie etc.']))
+# print(
+#     'Active Water Connections per 1000 Properties: ',
+#     median(df_20181L2L['# of Active Connection (as on Mar 19)']*1000/df_20181L2L['# of Active Properties (Mar 19)']))
+# print(
+#     'Percentage NRW: ',
+#     median(df_20181L2L['# of NRW (FY19)\n[2018-19 Unpaid Connections as on Mar18]']/df_20181L2L['# of Active Connection (as on Mar 19)']))
+# print('Grievances per capita: ', median(df_20181L2L['Total Grievances']*1000/df_20181L2L['ULB Population']))
+# print('PGR resolved within SLA:  ', median(df_20181L2L['% within SLA']))
+# print('Municipal Services per capita: ', median(df_20181L2L['Total # of Citizen Services (Logged in Fy19)']*1000/df_20181L2L['ULB Population']))
+# print('MS resolved within SLA: ', median(df_20181L2L['% delivered within SLA']))
+# print(' ')
+# print('Model ULB 2L to 3L')
+# print(
+#     'Average population: ',
+#     median(df_20182L3L['ULB Population']))
+# print('Employees per capita: ', median(df_20182L3L['Current Total (Mar 19)']*1000/df_20182L3L['ULB Population']))
+# print(
+#     'Active Properties per capita: ',
+#     median(df_20182L3L['# of Active Properties (Mar 19)']*1000/df_20182L3L['ULB Population']))
+# print(
+#     'Active Properties per Revenue employee: ',
+#     median(df_20182L3L['# of Active Properties (Mar 19)']/df_20182L3L['Revenue']))
+# print(
+#     'PT Collection Rate: ',
+#     median(df_20182L3L['Cumulative Collections (Including Arrears/ penalty) FY19']/df_20182L3L['Demand (FY 19) - Including Arrears/ Penaltie etc.']))
+# print(
+#     'Active Water Connections per 1000 Properties: ',
+#     median(df_20182L3L['# of Active Connection (as on Mar 19)']*1000/df_20182L3L['# of Active Properties (Mar 19)']))
+# print(
+#     'Percentage NRW: ',
+#     median(df_20182L3L['# of NRW (FY19)\n[2018-19 Unpaid Connections as on Mar18]']/df_20182L3L['# of Active Connection (as on Mar 19)']))
+# print('Grievances per capita: ', median(df_20182L3L['Total Grievances']*1000/df_20182L3L['ULB Population']))
+# print('PGR resolved within SLA:  ', median(df_20182L3L['% within SLA']))
+# print('Municipal Services per capita: ', median(df_20182L3L['Total # of Citizen Services (Logged in Fy19)']*1000/df_20182L3L['ULB Population']))
+# print('MS resolved within SLA: ', median(df_20182L3L['% delivered within SLA']))
+# print(' ')
+# print('Model ULB 3L to 5L')
+# print(
+#     'Average population: ',
+#     median(df_20183L5L['ULB Population']))
+# print('Employees per capita: ', median(df_20183L5L['Current Total (Mar 19)']*1000/df_20183L5L['ULB Population']))
+# print(
+#     'Active Properties per capita: ',
+#     median(df_20183L5L['# of Active Properties (Mar 19)']*1000/df_20183L5L['ULB Population']))
+# print(
+#     'Active Properties per Revenue employee: ',
+#     median(df_20183L5L['# of Active Properties (Mar 19)']/df_20183L5L['Revenue']))
+# print(
+#     'PT Collection Rate: ',
+#     median(df_20183L5L['Cumulative Collections (Including Arrears/ penalty) FY19']/df_20183L5L['Demand (FY 19) - Including Arrears/ Penaltie etc.']))
+# print(
+#     'Active Water Connections per 1000 Properties: ',
+#     median(df_20183L5L['# of Active Connection (as on Mar 19)']*1000/df_20183L5L['# of Active Properties (Mar 19)']))
+# print(
+#     'Percentage NRW: ',
+#     median(df_20183L5L['# of NRW (FY19)\n[2018-19 Unpaid Connections as on Mar18]']/df_20183L5L['# of Active Connection (as on Mar 19)']))
+# print('Grievances per capita: ', median(df_20183L5L['Total Grievances']*1000/df_20183L5L['ULB Population']))
+# print('PGR resolved within SLA:  ', median(df_20183L5L['% within SLA']))
+# print('Municipal Services per capita: ', median(df_20183L5L['Total # of Citizen Services (Logged in Fy19)']*1000/df_20183L5L['ULB Population']))
+# print('MS resolved within SLA: ', median(df_20183L5L['% delivered within SLA']))
+# print(' ')
+
+# df_2019corp = df_2019[df_2019['ULB Type'] == 'Corp']
+# df_2018corp = df_2018[df_2018['ULB Type'] == 'Corp']
+# df_2017corp = df_2017[df_2017['ULB Type'] == 'Corp']
+# df_2016corp = df_2016[df_2016['ULB Type'] == 'Corp']
 # print((df_2016corp['Regular ']+df_2016corp['Contract']).sum())
 # print((df_2017corp['Regular ']+df_2017corp['Contract']).sum())
 # print((df_2018corp['Regular ']+df_2018corp['Contract']).sum())
@@ -55,39 +227,45 @@ df_2016corp = df_2016[df_2016['ULB Type'] == 'Corp']
 #     [df_2016corp['Annual Demand (FY17)\n[Excluding arrear/penalty]']/(100000*df_2016corp['Revenue']), df_2017corp['Annual Demand (FY18)\n[Excluding arrear/penalty]']/(100000*df_2017corp['Revenue']), df_2018corp['Annual Demand (FY19)\n[Excluding arrear/penalty]']/(100000*df_2018corp['Revenue']), df_2019corp['Annual Demand (FY19)\n[Excluding arrear/penalty]']/(100000*df_2019corp['Revenue'])], '--')
 # plt.legend(df_2019corp['ULB Name'])
 # plt.show()
-# df_range = df_range.drop('ULB Type', axis=1)
-# df_range = df_range.drop('District Name', axis=1)
-# df_range = df_range.drop('Region', axis=1)
+
+df_range = df_range[df_range['ULB Name'] != 'Guntur']
+df_range = df_range[df_range['ULB Name'] != 'Vijayawada']
+df_range = df_range[df_range['ULB Name'] != 'Visakhapatnam']
+df_range = df_range.drop('ULB Type', axis=1)
+df_range = df_range.drop('District Name', axis=1)
+df_range = df_range.drop('Region', axis=1)
 df_range = df_range. sort_values(by='ULB Population', ascending=True)
 
 for i in df_range.columns:
-    w, h = figaspect(1/3)
-    fig, ax = plt.subplots(figsize=(w, h))
-    pop_ranges = [
-        'Less than 50k',
-        '50k to 1 Lac',
-        '1 Lac to 2 Las',
-        '2 Lacs to 3 Lacs',
-        '3 Lacs to 5 Lacs',
-        '5 Lacs to 10 Lacs',
-        '10 Lacs to 20 Lacs',
-        '20 Lacs to 30 Lacs']
-    plt.ylabel(i)
-    plt.grid(axis='y')
-    # if (i != 'ULB Name' and i != 'Population Range'):
-    #     print(i)
-    #     plt.ylim(top=3*median(df_range[i]))
-    for j in pop_ranges:
-        df_range_x = df_range[df_range['Population Range'] == j]
-        ax.plot(df_range_x['ULB Name'], df_range_x[i], 'o')
-    plt.legend(pop_ranges)
-    plt.xticks([])
-    # plt.xticks(df_range['ULB Name'], df_range['ULB Name'], rotation=70)
-    plt.savefig(
-        'autogen_no_limits/'+i,
-        bbox_inches='tight',
-        pad_inches=0.21)
-    plt.close()
+    print(i)
+    for k in df_range.columns:
+        w, h = figaspect(1/3)
+        fig, ax = plt.subplots(figsize=(w, h))
+        pop_ranges = [
+            'Less than 50k',
+            '50k to 1 Lac',
+            '1 Lac to 2 Las',
+            '2 Lacs to 3 Lacs',
+            '3 Lacs to 5 Lacs',
+            '5 Lacs to 10 Lacs',
+            '10 Lacs to 20 Lacs',
+            '20 Lacs to 30 Lacs']
+        plt.ylabel(i)
+        plt.grid(axis='y')
+        # if (i != 'ULB Name' and i != 'Population Range'):
+        #     print(i)
+        #     plt.xlim(xmax=400)
+        for j in pop_ranges:
+            df_range_x = df_range[df_range['Population Range'] == j]
+            ax.plot(df_range_x[k], df_range_x[i], 'o')
+        plt.legend(pop_ranges)
+        # plt.xticks([])
+        # plt.xticks(df_range['ULB Name'], df_range['ULB Name'], rotation=70)
+        plt.savefig(
+            'autogen_heck/'+i+'_'+k,
+            bbox_inches='tight',
+            pad_inches=0.21)
+        plt.close()
 
 # df_corp = df_corp.drop([5, 10, 28, 104, 106])
 # df_corp['ULB Name'].drop(5)
@@ -139,7 +317,7 @@ for i in df_range.columns:
 #     model.fit(x_train[i].to_numpy().reshape(-1, 1), y_train)
 #     print(i, model.coef_)
 # prop_coef = []
-
+#
 # for i in range(0, len(df_corp)):
 #     # medval = df_corp['Properties/ Rev Employee'].median()/df_corp['Revenues  / Rev Employee'].median()
 #     prop_coef.append(
